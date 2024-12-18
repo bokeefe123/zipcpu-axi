@@ -55,6 +55,10 @@ public:
     send_array();      // Send the entire input array
     receive_array();   // Receive the entire output array
     validate_result(); // Validate the results
+    reset();
+    send_array();
+    receive_array();
+    validate_result();
   }
 
 private:
@@ -73,7 +77,11 @@ private:
   void reset() {
     dut->clk = 0;
     dut->r_valid = 0;
+    dut->r_last = 0;
+    dut->r_data = 0;
     dut->t_ready = 0;
+    output_array.clear();
+    dut->reset = 1;
     for (int i = 0; i < 5; ++i) {
       step();
     }
@@ -94,18 +102,20 @@ private:
 
     for (const auto &packet : input_array) {
       // Assign packet data to DUT inputs
+      start_step();
       dut->r_data = packet.data;
       dut->r_valid = 1;
       dut->r_last = packet.last;
-
+      end_step();
       // Wait for DUT to assert r_ready
       do {
         step();
       } while (!dut->r_ready);
 
       // De-assert r_valid after sending
+      start_step();
       dut->r_valid = 0;
-      step();
+      end_step();
     }
   }
 
@@ -114,9 +124,9 @@ private:
     std::cout << "Receiving array..." << std::endl;
 
     while (output_array.size() < input_array.size()) {
-      step();
+      start_step();
 
-      if (dut->t_valid) {
+      if (dut->t_valid && dut->t_ready) {
         // Capture the received packet data
         AxiStreamPacket received_packet;
         received_packet.data = dut->t_data;
@@ -125,14 +135,12 @@ private:
         // Store the received packet in the output array
         output_array.push_back(received_packet);
 
-        // Acknowledge the received data
-        dut->t_ready = 1;
-        step();
-
-        // De-assert t_ready
         dut->t_ready = 0;
-        step();
+
+      } else if (dut->t_valid) {
+        dut->t_ready = 1;
       }
+      end_step();
     }
   }
 
@@ -160,8 +168,13 @@ private:
     std::cout << "Test Passed: All packets match!" << std::endl;
   }
 
-  // Simulate a single clock cycle
   void step() {
+    start_step();
+    end_step();
+  }
+
+  // Simulate a single clock cycle
+  void start_step() {
     // Print the current step number
     std::cout << "Clock step: " << main_time / 2 << std::endl;
 
@@ -180,7 +193,8 @@ private:
     main_time++;
     if (tfp)
       tfp->dump(main_time); // Dump signal states after clk=0
-
+  }
+  void end_step() {
     dut->clk = 1;
     evaluate();
     main_time++;

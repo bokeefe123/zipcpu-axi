@@ -11,6 +11,7 @@ Vudp::Vudp(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new Vudp__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
+    , reset{vlSymsp->TOP.reset}
     , r_valid{vlSymsp->TOP.r_valid}
     , r_ready{vlSymsp->TOP.r_ready}
     , r_last{vlSymsp->TOP.r_last}
@@ -18,8 +19,12 @@ Vudp::Vudp(VerilatedContext* _vcontextp__, const char* _vcname__)
     , t_valid{vlSymsp->TOP.t_valid}
     , t_ready{vlSymsp->TOP.t_ready}
     , t_last{vlSymsp->TOP.t_last}
+    , r_offset{vlSymsp->TOP.r_offset}
+    , t_offset{vlSymsp->TOP.t_offset}
+    , t_ready_stall{vlSymsp->TOP.t_ready_stall}
     , r_data{vlSymsp->TOP.r_data}
     , t_data{vlSymsp->TOP.t_data}
+    , buffer{vlSymsp->TOP.buffer}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

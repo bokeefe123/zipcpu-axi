@@ -1,14 +1,17 @@
-# Makefile for Verilator Counter Simulation
+# Makefile for Verilator Simulation with SystemVerilog
 
-# Top-level Verilog module (without .v extension)
+# Top-level SystemVerilog module (without .sv extension)
 TOP_MODULE = udp
 
-# Source files
-VERILOG_SOURCES = $(TOP_MODULE).v
+# Source files (now using .sv for SystemVerilog)
+VERILOG_SOURCES = $(TOP_MODULE).sv
 CPP_SOURCES = sim_main.cpp
 
 # Verilator flags
-VERILATOR_FLAGS = --cc --trace
+# --sv: Enable SystemVerilog features
+# --trace: Enable waveform tracing
+# You can add other flags like --Wall, --Wno-fatal for additional checks.
+VERILATOR_FLAGS = --cc --trace --sv
 
 # Build directory
 BUILD_DIR = obj_dir

@@ -30,6 +30,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vudp VL_NOT_FINAL : public VerilatedModel {
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
+    VL_OUT8(&reset,0,0);
     VL_IN8(&r_valid,0,0);
     VL_OUT8(&r_ready,0,0);
     VL_IN8(&r_last,0,0);
@@ -37,8 +38,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vudp VL_NOT_FINAL : public VerilatedModel {
     VL_OUT8(&t_valid,0,0);
     VL_IN8(&t_ready,0,0);
     VL_OUT8(&t_last,0,0);
+    VL_OUT8(&r_offset,1,0);
+    VL_OUT8(&t_offset,1,0);
+    VL_OUT8(&t_ready_stall,0,0);
     VL_IN16(&r_data,15,0);
     VL_OUT16(&t_data,15,0);
+    VL_OUT16((&buffer)[4],15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

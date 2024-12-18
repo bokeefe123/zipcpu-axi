@@ -22,7 +22,6 @@ void Vudp___024root___eval_nba(Vudp___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
         Vudp___024root___nba_sequent__TOP__0(vlSelf);
-        vlSelfRef.__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -32,70 +31,88 @@ VL_INLINE_OPT void Vudp___024root___nba_sequent__TOP__0(Vudp___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vudp___024root___nba_sequent__TOP__0\n"); );
     auto &vlSelfRef = std::ref(*vlSelf).get();
     // Init
-    CData/*1:0*/ __Vdly__udp__DOT__r_offset;
-    __Vdly__udp__DOT__r_offset = 0;
-    CData/*1:0*/ __Vdly__udp__DOT__t_offset;
-    __Vdly__udp__DOT__t_offset = 0;
     CData/*0:0*/ __Vdly__t_valid;
     __Vdly__t_valid = 0;
-    SData/*15:0*/ __VdlyVal__udp__DOT__buffer__v0;
-    __VdlyVal__udp__DOT__buffer__v0 = 0;
-    CData/*0:0*/ __VdlySet__udp__DOT__buffer__v0;
-    __VdlySet__udp__DOT__buffer__v0 = 0;
-    SData/*15:0*/ __VdlyVal__udp__DOT__buffer__v1;
-    __VdlyVal__udp__DOT__buffer__v1 = 0;
-    SData/*15:0*/ __VdlyVal__udp__DOT__buffer__v2;
-    __VdlyVal__udp__DOT__buffer__v2 = 0;
-    SData/*15:0*/ __VdlyVal__udp__DOT__buffer__v3;
-    __VdlyVal__udp__DOT__buffer__v3 = 0;
+    CData/*0:0*/ __Vdly__t_last;
+    __Vdly__t_last = 0;
+    CData/*1:0*/ __Vdly__r_offset;
+    __Vdly__r_offset = 0;
+    CData/*1:0*/ __Vdly__t_offset;
+    __Vdly__t_offset = 0;
+    CData/*0:0*/ __VdlySet__buffer__v0;
+    __VdlySet__buffer__v0 = 0;
+    SData/*15:0*/ __VdlyVal__buffer__v4;
+    __VdlyVal__buffer__v4 = 0;
+    CData/*0:0*/ __VdlySet__buffer__v4;
+    __VdlySet__buffer__v4 = 0;
+    SData/*15:0*/ __VdlyVal__buffer__v5;
+    __VdlyVal__buffer__v5 = 0;
+    SData/*15:0*/ __VdlyVal__buffer__v6;
+    __VdlyVal__buffer__v6 = 0;
+    SData/*15:0*/ __VdlyVal__buffer__v7;
+    __VdlyVal__buffer__v7 = 0;
     // Body
-    __Vdly__udp__DOT__r_offset = vlSelfRef.udp__DOT__r_offset;
+    __VdlySet__buffer__v0 = 0U;
+    __Vdly__t_offset = vlSelfRef.t_offset;
+    __Vdly__r_offset = vlSelfRef.r_offset;
+    __VdlySet__buffer__v4 = 0U;
+    __Vdly__t_last = vlSelfRef.t_last;
     __Vdly__t_valid = vlSelfRef.t_valid;
-    __Vdly__udp__DOT__t_offset = vlSelfRef.udp__DOT__t_offset;
-    __VdlySet__udp__DOT__buffer__v0 = 0U;
-    if (vlSelfRef.r_ready) {
+    if (((IData)(vlSelfRef.r_ready) & (IData)(vlSelfRef.r_valid))) {
         if ((1U & (~ (IData)(vlSelfRef.r_last)))) {
-            __Vdly__udp__DOT__r_offset = (3U & ((IData)(1U) 
-                                                + (IData)(vlSelfRef.udp__DOT__r_offset)));
+            __Vdly__r_offset = (3U & ((IData)(1U) + (IData)(vlSelfRef.r_offset)));
         }
-        __VdlyVal__udp__DOT__buffer__v0 = vlSelfRef.r_data;
-        __VdlySet__udp__DOT__buffer__v0 = 1U;
-        __VdlyVal__udp__DOT__buffer__v1 = vlSelfRef.udp__DOT__buffer
-            [3U];
-        __VdlyVal__udp__DOT__buffer__v2 = vlSelfRef.udp__DOT__buffer
-            [2U];
-        __VdlyVal__udp__DOT__buffer__v3 = vlSelfRef.udp__DOT__buffer
-            [1U];
+        __VdlyVal__buffer__v4 = vlSelfRef.r_data;
+        __VdlySet__buffer__v4 = 1U;
+        __VdlyVal__buffer__v5 = vlSelfRef.buffer[3U];
+        __VdlyVal__buffer__v6 = vlSelfRef.buffer[2U];
+        __VdlyVal__buffer__v7 = vlSelfRef.buffer[1U];
     }
-    if (((((IData)(vlSelfRef.udp__DOT__t_offset) < (IData)(vlSelfRef.udp__DOT__r_offset)) 
-          & (IData)(vlSelfRef.r_last)) & (~ (IData)(vlSelfRef.r_valid)))) {
-        __Vdly__t_valid = 1U;
-    } else if ((((IData)(vlSelfRef.t_last) | (IData)(vlSelfRef.t_valid)) 
-                & (IData)(vlSelfRef.t_ready))) {
+    if (((IData)(vlSelfRef.t_valid) & (IData)(vlSelfRef.t_ready_stall))) {
         __Vdly__t_valid = 0U;
     }
-    if (vlSelfRef.t_valid) {
-        vlSelfRef.t_data = vlSelfRef.udp__DOT__buffer
-            [vlSelfRef.udp__DOT__t_offset];
-        if (((IData)(vlSelfRef.t_ready) & (~ (IData)(vlSelfRef.t_last)))) {
-            __Vdly__udp__DOT__t_offset = (3U & ((IData)(1U) 
-                                                + (IData)(vlSelfRef.udp__DOT__t_offset)));
+    if (vlSelfRef.reset) {
+        __Vdly__t_valid = 0U;
+        __Vdly__t_last = 0U;
+        __Vdly__r_offset = 0U;
+        __Vdly__t_offset = 0U;
+        vlSelfRef.reset = 0U;
+        __VdlySet__buffer__v0 = 1U;
+    }
+    if (((((((((IData)(vlSelfRef.t_offset) <= (IData)(vlSelfRef.r_offset)) 
+              & (IData)(vlSelfRef.r_last)) & (~ (IData)(vlSelfRef.r_valid))) 
+            & (~ (IData)(vlSelfRef.t_ready_stall))) 
+           & (~ (IData)(vlSelfRef.t_last))) & (~ (IData)(vlSelfRef.t_valid))) 
+         & (0U < (IData)(vlSelfRef.r_offset)))) {
+        __Vdly__t_valid = 1U;
+        if (((IData)(vlSelfRef.t_offset) == (IData)(vlSelfRef.r_offset))) {
+            __Vdly__t_last = 1U;
         }
     }
-    vlSelfRef.udp__DOT__r_offset = __Vdly__udp__DOT__r_offset;
+    if (((IData)(vlSelfRef.t_valid) & (IData)(vlSelfRef.t_ready))) {
+        vlSelfRef.t_data = vlSelfRef.buffer[vlSelfRef.t_offset];
+        if ((1U & (~ (IData)(vlSelfRef.t_last)))) {
+            __Vdly__t_offset = (3U & ((IData)(1U) + (IData)(vlSelfRef.t_offset)));
+        }
+    }
+    vlSelfRef.r_offset = __Vdly__r_offset;
+    vlSelfRef.t_last = __Vdly__t_last;
     vlSelfRef.t_valid = __Vdly__t_valid;
-    if (__VdlySet__udp__DOT__buffer__v0) {
-        vlSelfRef.udp__DOT__buffer[3U] = __VdlyVal__udp__DOT__buffer__v0;
-        vlSelfRef.udp__DOT__buffer[2U] = __VdlyVal__udp__DOT__buffer__v1;
-        vlSelfRef.udp__DOT__buffer[1U] = __VdlyVal__udp__DOT__buffer__v2;
-        vlSelfRef.udp__DOT__buffer[0U] = __VdlyVal__udp__DOT__buffer__v3;
+    vlSelfRef.t_offset = __Vdly__t_offset;
+    if (__VdlySet__buffer__v0) {
+        vlSelfRef.buffer[3U] = 0U;
+        vlSelfRef.buffer[2U] = 0U;
+        vlSelfRef.buffer[1U] = 0U;
+        vlSelfRef.buffer[0U] = 0U;
+    }
+    if (__VdlySet__buffer__v4) {
+        vlSelfRef.buffer[3U] = __VdlyVal__buffer__v4;
+        vlSelfRef.buffer[2U] = __VdlyVal__buffer__v5;
+        vlSelfRef.buffer[1U] = __VdlyVal__buffer__v6;
+        vlSelfRef.buffer[0U] = __VdlyVal__buffer__v7;
     }
     vlSelfRef.r_ready = vlSelfRef.r_valid;
-    if (((2U == (IData)(vlSelfRef.udp__DOT__t_offset)) 
-         & (IData)(vlSelfRef.t_ready))) {
-        vlSelfRef.t_last = 1U;
-    }
-    vlSelfRef.udp__DOT__t_offset = __Vdly__udp__DOT__t_offset;
+    vlSelfRef.t_ready_stall = vlSelfRef.t_ready;
 }
 
 void Vudp___024root___eval_triggers__act(Vudp___024root* vlSelf);
@@ -158,7 +175,7 @@ void Vudp___024root___eval(Vudp___024root* vlSelf) {
 #ifdef VL_DEBUG
             Vudp___024root___dump_triggers__nba(vlSelf);
 #endif
-            VL_FATAL_MT("udp.v", 1, "", "NBA region did not converge.");
+            VL_FATAL_MT("udp.sv", 1, "", "NBA region did not converge.");
         }
         __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
         __VnbaContinue = 0U;
@@ -169,7 +186,7 @@ void Vudp___024root___eval(Vudp___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vudp___024root___dump_triggers__act(vlSelf);
 #endif
-                VL_FATAL_MT("udp.v", 1, "", "Active region did not converge.");
+                VL_FATAL_MT("udp.sv", 1, "", "Active region did not converge.");
             }
             vlSelfRef.__VactIterCount = ((IData)(1U) 
                                          + vlSelfRef.__VactIterCount);
