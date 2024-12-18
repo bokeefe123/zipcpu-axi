@@ -51,7 +51,7 @@ module udp (
 
     // Control r_ready
     always_ff @(posedge clk) begin
-      if (r_offset < DATA_WIDTH + 1 && r_valid) begin
+      if ((r_offset != t_offset || (r_offset == t_offset && buffer[r_offset] == 16'h0)) && r_valid) begin
         r_ready <= 1'b1;
       end
       else begin
@@ -84,6 +84,7 @@ module udp (
     always_ff @(posedge clk) begin
       if (t_valid && t_ready) begin
         t_data <= buffer[t_offset];
+        buffer[t_offset] <= 16'h0;
         if (!t_last) begin
           t_offset <= t_offset + 1;
         end
@@ -110,11 +111,17 @@ module udp (
 /********************  Assertion Defininition  ********************/
 `ifdef ABV_ON
 
-property my_property;
-  @(posedge clk) r_valid |-> ##1 r_ready; // If 'a' is true at one clock, then 'b' must be true one cycle later
-endproperty
+offset_cover: cover property (@(posedge clk) (r_offset - t_offset == 3));
 
-assert property(my_property) else $fatal("Assertion failed: Condition not met.");
+offset_bounded: assert property (@(posedge clk)
+  (r_valid && (r_offset == 0 && t_offset == 0) && buffer[0] == 0) |-> ##1 r_ready
+);
+
+offset_out_bounded: assert property (@(posedge clk)
+  (r_valid && (r_offset == 0 && t_offset == 0) && buffer[0] != 0) |-> ##1 !r_ready
+);
+
+
 
 // always @* begin
 //   // ASSUMPTIONS

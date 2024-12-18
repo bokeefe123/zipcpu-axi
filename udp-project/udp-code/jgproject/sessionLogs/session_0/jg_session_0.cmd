@@ -5,10 +5,10 @@
 # version   : 2023.12p001 64 bits
 # build date: 2024.01.23 16:09:24 UTC
 # ----------------------------------------
-# started   : 2024-12-18 10:28:09 PST
-# hostname  : caddy18.stanford.edu.(none)
-# pid       : 36814
-# arguments : '-label' 'session_0' '-console' '//127.0.0.1:39541' '-style' 'windows' '-data' 'AAAA3nicVY6xCsJAEETfKfYp/YaAEoSARYo0dkpQwTZItBBCEkxEsDGf6p+ccwkpbpad2V1uuDFA8rXWMmD+EQXsOXBiJ864SGFJzIYtESkFV26UPDRFo8/8RiUx+HD7zL8ce09hMZmnJ84QstI/parmTc6LilbcqGqedNyVIlfC85DZ7a14rS7kcvgD8wMZTQ==' '-proj' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/sessionLogs/session_0' '-init' '-hidden' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/.tmp/.initCmds.tcl' 'test.tcl'
+# started   : 2024-12-18 15:58:06 PST
+# hostname  : caddy11.stanford.edu.(none)
+# pid       : 40291
+# arguments : '-label' 'session_0' '-console' '//127.0.0.1:41981' '-style' 'windows' '-data' 'AAAA3nicVY6xCsJAEETfKfYp/YaAEoSARYo0dkpQwTZItBBCEkxEsDGf6p+ccwkpbpad2V1uuDFA8rXWMmD+EQXsOXBiJ864SGFJzIYtESkFV26UPDRFo8/8RiUx+HD7zL8ce09hMZmnJ84QstI/parmTc6LilbcqGqedNyVIlfC85DZ7a14rS7kcvgD8wMZTQ==' '-proj' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/sessionLogs/session_0' '-init' '-hidden' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/.tmp/.initCmds.tcl' 'test.tcl'
 # Run JG with a TCl file: jg foo.tcl
 # To get help about the tcl command syntax
 # use the help command "help" at the JG console

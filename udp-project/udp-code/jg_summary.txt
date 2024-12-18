@@ -3,9 +3,9 @@
     Jasper Verification Results
 ==============================================================
     2023.12p001 64 bits for Linux64 3.10.0-1160.21.1.el7.x86_64
-    Host Name: caddy18.stanford.edu
+    Host Name: caddy11.stanford.edu
     User Name: bokeefe
-    Printed on: Wednesday, Dec18, 2024 10:28:15 AM PST
+    Printed on: Wednesday, Dec18, 2024 03:58:12 PM PST
     Working Directory: /home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code
 
 
@@ -13,21 +13,21 @@
 SUMMARY
 ==============================================================
     Total Tasks           : 1
-    Total Properties      : 2
+    Total Properties      : 5
           assumptions     : 0                   
            - approved     : 0                   
            - temporary    : 0                   
-          assertions      : 1                   
-           - proven       : 1                   ( 100.0% )
+          assertions      : 2                   
+           - proven       : 2                   ( 100.0% )
            - marked_proven: 0                   ( 0.0% )
            - cex          : 0                   ( 0.0% )
            - ar_cex       : 0                   ( 0.0% )
            - undetermined : 0                   ( 0.0% )
            - unprocessed  : 0                   ( 0.0% )
            - error        : 0                   ( 0.0% )
-          covers          : 1                   
+          covers          : 3                   
            - unreachable  : 0                   ( 0.0% )
-           - covered      : 1                   ( 100.0% )
+           - covered      : 3                   ( 100.0% )
            - ar_covered   : 0                   ( 0.0% )
            - undetermined : 0                   ( 0.0% )
            - unprocessed  : 0                   ( 0.0% )
@@ -37,10 +37,13 @@ SUMMARY
 RESULTS
 ==============================================================
 
-----------------------------------------------------------------------------------------
-       Name                            |    Result    |  Engine  |  Bound  |  Time    
-----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+       Name                                     |    Result    |  Engine  |  Bound  |  Time    
+-------------------------------------------------------------------------------------------------
 
----[ <embedded> ]-----------------------------------------------------------------------
-[1]   udp._assert_1                         proven          PRE    Infinite    0.000 s      
-[2]   udp._assert_1:precondition1           covered         PRE           1    0.000 s      
+---[ <embedded> ]--------------------------------------------------------------------------------
+[1]   udp.offset_cover                               covered         N             1    0.211 s      
+[2]   udp.offset_bounded                             proven          N      Infinite    0.080 s      
+[3]   udp.offset_bounded:precondition1               covered         Hp            1    0.256 s      
+[4]   udp.offset_out_bounded                         proven          Hp     Infinite    0.333 s      
+[5]   udp.offset_out_bounded:precondition1           covered         Hp            1    0.293 s      
