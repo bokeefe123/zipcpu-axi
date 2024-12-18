@@ -10,7 +10,7 @@
 clear -all
 
 # Analyze RTL files
-analyze -sv -f Flist.counter
+analyze -sv -f Flist.udp
 
 # Elaborate
 elaborate
@@ -23,7 +23,8 @@ clock clk
 
 # Define reset condition
 # reset pin is called rst_n, active low
-reset !reset
+
+reset rst
 
 # Start the verification
 prove -all

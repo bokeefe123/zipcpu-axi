@@ -81,7 +81,9 @@ private:
     dut->r_data = 0;
     dut->t_ready = 0;
     output_array.clear();
-    dut->reset = 1;
+    dut->rst = 1;
+    step();
+    dut->rst = 0;
     for (int i = 0; i < 5; ++i) {
       step();
     }

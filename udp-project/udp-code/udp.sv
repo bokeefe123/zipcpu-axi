@@ -1,6 +1,6 @@
 module udp (
   input  logic        clk,
-  output  logic        reset,
+  input  logic        rst,
   input  logic        r_valid,
   output logic        r_ready,
   input  logic [15:0] r_data,
@@ -32,13 +32,16 @@ module udp (
     end
 
     always_ff @(posedge clk) begin
-      if (reset) begin
+      if (rst) begin
         t_valid <= 1'b0;
         t_last   <= 1'b0;
         r_offset <= 2'h0;
         t_offset <= 2'h0;
-        reset <= 1'b0;
-        buffer <= {16'h0, 16'h0, 16'h0, 16'h0};
+        // rst <= 1'b0;
+        buffer[3] <= 16'h0;
+        buffer[2] <= 16'h0;
+        buffer[1] <= 16'h0;
+        buffer[0] <= 16'h0;
       end
     end
 
@@ -67,7 +70,11 @@ module udp (
     // Shift the buffer and insert new data at buffer[0]
     always_ff @(posedge clk) begin
        if (r_ready && r_valid) begin
-        buffer <= {r_data, buffer[3:1]};
+        buffer[3] <= r_data;
+        buffer[2] <= buffer[3];
+        buffer[1] <= buffer[2];
+        buffer[0] <= buffer[1];
+        // buffer <= {r_data, buffer[3:1]}; Unsupported on verilator version on caddy machine
         if (!r_last) begin
           r_offset <= r_offset + 1;
         end

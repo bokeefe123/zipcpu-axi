@@ -1,0 +1,109 @@
+# ----------------------------------------
+# Jasper Version Info
+# tool      : Jasper 2023.12
+# platform  : Linux 4.18.0-553.32.1.el8_10.x86_64
+# version   : 2023.12p001 64 bits
+# build date: 2024.01.23 16:09:24 UTC
+# ----------------------------------------
+# started   : 2024-12-18 10:24:44 PST
+# hostname  : caddy18.stanford.edu.(none)
+# pid       : 36357
+# arguments : '-label' 'session_0' '-console' '//127.0.0.1:34883' '-style' 'windows' '-data' 'AAAA3nicVY6xCsJAEETfKfYp/YaAEoSARYo0dkpQwTZItBBCEkxEsDGf6p+ccwkpbpad2V1uuDFA8rXWMmD+EQXsOXBiJ864SGFJzIYtESkFV26UPDRFo8/8RiUx+HD7zL8ce09hMZmnJ84QstI/parmTc6LilbcqGqedNyVIlfC85DZ7a14rS7kcvgD8wMZTQ==' '-proj' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/sessionLogs/session_0' '-init' '-hidden' '/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/.tmp/.initCmds.tcl' 'test.tcl'
+
+Any disclosure about the Cadence Design Systems software or its use
+model to any third party violates the written Non-Disclosure Agreement
+between Cadence Design Systems, Inc. and the customer.
+
+THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
+CADENCE DESIGN SYSTEMS, INC. USE, DISCLOSURE, OR REPRODUCTION IS
+PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF CADENCE
+DESIGN SYSTEMS, INC.
+
+Copyright (C) 2000-2023 Cadence Design Systems, Inc. All Rights
+Reserved.  Unpublished -- rights reserved under the copyright laws of
+the United States.
+
+This product includes software developed by others and redistributed
+according to license agreement. See doc/third_party_readme.txt for
+further details.
+
+RESTRICTED RIGHTS LEGEND
+
+Use, duplication, or disclosure by the Government is subject to
+restrictions as set forth in subparagraph (c) (1) (ii) of the Rights in
+Technical Data and Computer Software clause at DFARS 252.227-7013 or
+subparagraphs (c) (1) and (2) of Commercial Computer Software -- Restricted
+Rights at 48 CFR 52.227-19, as applicable.
+
+
+                          Cadence Design Systems, Inc.
+                          2655 Seely Avenue
+                          San Jose, CA 95134
+                          Phone: 408.943.1234
+
+For technical assistance visit http://support.cadence.com.
+
+Jasper Apps Analysis Session - /home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/jgproject/sessionLogs/session_0
+
+INFO: successfully checked out licenses "jasper_interactive" and "jasper_fao".
+INFO: reading configuration file "/home/users/bokeefe/.config/cadence/jasper.conf".
+% # Run JG with a TCl file: jg foo.tcl
+% # To get help about the tcl command syntax
+% # use the help command "help" at the JG console
+% # This will list an overview of all commands.
+% # To get details about individual command use
+% # help in combination with the command name and its options.
+% # For example "help assert"
+% 
+% # Clear previous run
+% clear -all
+INFO (IPF121): Cleared environment completely for new design analysis.
+% 
+% # Analyze RTL files
+% analyze -sv -f Flist.udp
+INFO (INL011): Processing "-f" file "/home/users/bokeefe/verilog/zipcpu-axi/udp-project/udp-code/Flist.udp".
+[-- (VERI-1482)] Analyzing Verilog file '/cad/cadence/jasper_2023.12p001/lib/verilog/packages/std/std.sv' into library 'std'
+[-- (VERI-1482)] Analyzing Verilog file 'udp.sv'
+% 
+% # Elaborate
+% elaborate
+[INFO (HIER-8002)] udp.sv(134): Disabling old hierarchical reference handler
+[INFO (VERI-1018)] udp.sv(1): compiling module 'udp'
+[WARN (VERI-1060)] udp.sv(32): 'initial' construct is ignored
+[WARN (VERI-1209)] udp.sv(79): expression size 32 truncated to fit in target size 2
+[WARN (VERI-1209)] udp.sv(88): expression size 32 truncated to fit in target size 2
+[WARN (VDB-1000)] udp.sv(98): net 't_valid' is constantly driven from multiple places
+[WARN (VDB-1001)] udp.sv(108): found another driver here
+INFO (ISW003): Top module name is "udp".
+INFO (INL208): Elaboration synthesis summary:
+  Number of synthesized netlists          1 (0 packages)
+  Single run mode                         On
+  Pipeline                                On (1 pipelined netlists)
+  Late hierarchical reference connection  On
+  Number of analyzed Verilog modules      1 (1 synthesized)
+  Number of analyzed VHDL entities        0 (0 synthesized)
+INFO (INL003): Clearing all state information (assumes, stopats, and so forth).
+INFO (IMDS005): Number of multiple-driven bits in design: 70. Use "get_design_info -list multiple_driven" for more information.
+udp
+[<embedded>] % 
+[<embedded>] % # Initialization
+[<embedded>] % # Clock specification
+[<embedded>] % # clock pin is called "clk"
+[<embedded>] % # duty cycle is 1:1 by default
+[<embedded>] % clock clk
+[<embedded>] % 
+[<embedded>] % # Define reset condition
+[<embedded>] % # reset pin is called rst_n, active low
+[<embedded>] % 
+[<embedded>] % reset rst
+ERROR (ERS026): Invalid reset expression. The following reset expression constrains flops/latches: "rst".
+    Cannot add reset expression that directly constrains flops/latches.
+
+ERROR: problem encountered at line 27 in file test.tcl
+
+INFO (IIM002): *** Stopping all proof jobs ***
+INFO (IPL005): Received request to exit from the console.
+INFO (IPL014): Waiting for the Tcl-thread to exit.
+INFO (IPL018): The peak resident set memory use for this session was 0.412 GB.
+INFO (IPL015): The Tcl-thread exited with status 0.
+INFO (IPL016): Exiting the analysis session with status 0.
