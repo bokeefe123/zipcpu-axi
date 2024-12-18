@@ -100,6 +100,30 @@ module udp (
       end
     end
 
+/********************  Assertion Defininition  ********************/
+`ifdef ABV_ON
+
+property my_property;
+  @(posedge clk) r_valid |-> ##1 r_ready; // If 'a' is true at one clock, then 'b' must be true one cycle later
+endproperty
+
+assert property(my_property) else $fatal("Assertion failed: Condition not met.");
+
+// always @* begin
+//   // ASSUMPTIONS
+//   data_bus_valid: assume(r_valid = 1);
+  
+//   // ASSERTIONS
+//   output_never_error: assert(out_d == out + 1);
+
+//   // COVERS
+//   data_bus_nonzero: cover(data_bus != '0); 
+// end
+
+
+`endif // ABV_ON
+
+
 endmodule
 
 
